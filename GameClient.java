@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -25,19 +26,39 @@ public class GameClient {
             });
             reader.start();
 
+            // Elegir clase del personaje
+            System.out.println("Elige tu clase:");
+            System.out.println("1. Arquera (250 HP, 20-30 ATK)");
+            System.out.println("2. Guerrero (300 HP, 15-25 ATK)");
+            System.out.println("3. Mago    (200 HP, 25-40 ATK)");
+            System.out.print("Opción(Coloque el número): ");
+            int choice = Integer.parseInt(sc.nextLine());
+
+            String type = "";
+            switch (choice) {
+                case 1 -> type = "ARQUERA";
+                case 2 -> type = "GUERRERO";
+                case 3 -> type = "MAGO";
+                default -> {
+                  System.out.println(" Opción inválida, intenta de nuevo.");
+                }
+            }
+
             // Nombre del jugador
-            System.out.print("Tu nombre: ");
+            System.out.print("Ingresa tu nombre: ");
             String name = sc.nextLine();
-            out.println("NAME:" + name);
+
+            // Mandar al servidor el tipo y nombre
+            out.println("JUGADOR:" + type + ":" + name);
 
             // Bucle principal de comandos
             while (true) {
-                System.out.print("Comando (ATTACK/STATUS/EXIT): ");
+                System.out.print("Comando (ATTACK/STATUS/HEAL/SPECIAL/EXIT): ");
                 String cmd = sc.nextLine().trim();
 
                 if (cmd.equalsIgnoreCase("EXIT")) {
-                    out.println("EXIT");  // 🔑 AVISAMOS AL SERVIDOR
-                    break;                // Luego cerramos el cliente
+                    out.println("EXIT");  //  avisamos al servidor
+                    break;
                 }
 
                 out.println(cmd);
@@ -50,5 +71,3 @@ public class GameClient {
         }
     }
 }
- 
-

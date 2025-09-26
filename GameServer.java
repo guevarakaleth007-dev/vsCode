@@ -1,10 +1,11 @@
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
 public class GameServer {
     private static final List<ClientHandler> waiting = new ArrayList<>();
-
+    
     public static void main(String[] args) throws IOException {
         int port = 5000;
         ServerSocket serverSocket = new ServerSocket(port);
@@ -36,9 +37,16 @@ public class GameServer {
                         a.sendMessage("MATCH_START");
                         b.sendMessage("MATCH_START");
 
-                        System.out.println("Emparejados: " +
+                        // Iniciar turnos
+                        a.startMatchTurn();
+
+                        if (a.getFighter() != null && b.getFighter() != null) {
+                            System.out.println("Emparejados: " +
                                 a.getFighter().getName() + " vs " +
                                 b.getFighter().getName());
+                        } else {
+                            System.out.println("Emparejados: esperando creación de personajes...");
+                        }
                     }
                 }
             }
