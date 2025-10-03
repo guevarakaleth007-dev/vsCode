@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class GameClient {
     public static void main(String[] args) {
-        String host = "localhost"; // cambiar si el server está en otra máquina
+        String host = "10.10.8.13"; // cambiar si el server está en otra máquina
         int port = 5000;
 
         try (Socket socket = new Socket(host, port);
@@ -28,9 +28,9 @@ public class GameClient {
 
             // Elegir clase del personaje
             System.out.println("Elige tu clase:");
-            System.out.println("1. Arquera (250 HP, 20-30 ATK)");
-            System.out.println("2. Guerrero (300 HP, 15-25 ATK)");
-            System.out.println("3. Mago    (200 HP, 25-40 ATK)");
+            System.out.println("1. Arquera (120 HP, 20-30 ATK)");
+            System.out.println("2. Guerrero (150 HP, 15-25 ATK)");
+            System.out.println("3. Mago    (100 HP, 25-40 ATK)");
             System.out.print("Opción(Coloque el número): ");
             int choice = Integer.parseInt(sc.nextLine());
 
@@ -53,7 +53,7 @@ public class GameClient {
 
             // Bucle principal de comandos
             while (true) {
-                System.out.print("Comando (ATTACK/STATUS/HEAL/SPECIAL/EXIT): ");
+                System.out.print("Comando (ATTACK/STATUS/HEAL/SPECIAL/STATS/EXIT): ");
                 String cmd = sc.nextLine().trim();
 
                 if (cmd.equalsIgnoreCase("EXIT")) {
